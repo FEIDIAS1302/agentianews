@@ -17,13 +17,7 @@ st.markdown("""
     }
     .stApp { background-color: #f8f9fa; }
     
-    /* カードデザイン */
-    .main-card {
-        background-color: #ffffff;
-        padding: 2.5rem;
-        border-radius: 8px;
-        border: 1px solid #e1e4e8;
-        box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+
     }
     
     /* ロゴセンター配置 */
