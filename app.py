@@ -49,7 +49,7 @@ TTS_URL = "https://api.fish.audio/v1/tts"
 # --- ロゴの表示 ---
 try:
     st.markdown('<div class="logo-container">', unsafe_allow_html=True)
-    st.image("logo.png", width=800)
+    st.image("logo.png", width=600)
     st.markdown('</div>', unsafe_allow_html=True)
 except:
     st.write("Logo (logo.png) not found.")
