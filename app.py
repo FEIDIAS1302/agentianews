@@ -42,7 +42,7 @@ st.markdown("""
 # --- 設定エリア ---
 VOICE_MODELS = {
     "Man": "b5dbca68e48f4f488799fcb988dfc005",
-    "Woman": "735434a118054f65897638d4b7380dfc"
+    "Woman": "8fb7bd78f9dc45459ca5e18764692e57"
 }
 TTS_URL = "https://api.fish.audio/v1/tts"
 
