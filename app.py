@@ -4,7 +4,7 @@ from deep_translator import GoogleTranslator
 import base64
 
 # --- ページ設定 & 余白削除のCSS ---
-st.set_page_config(page_title="AGENTIA for ニッポン放送", layout="centered")
+st.set_page_config(page_title="AGENTIA by FEIDIAS", layout="centered")
 
 st.markdown("""
     <style>
