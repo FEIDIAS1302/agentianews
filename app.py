@@ -9,12 +9,13 @@ import io
 # ページ設定とデザイン（前回のCSSを継承）
 st.set_page_config(page_title="AGENTIA for ニッポン放送β", layout="centered")
 
+
+
 st.markdown("""
     <style>
     header {visibility: hidden;}
     .main .block-container { padding-top: 1rem; max-width: 600px; }
     .stApp { background-color: #f8f9fa; }
-    .main-card { background-color: #ffffff; padding: 2.5rem; border-radius: 8px; border: 1px solid #e1e4e8; }
     .logo-container { display: flex; justify-content: center; margin-bottom: 2rem; }
     /* チェック結果のバッジ用 */
     .quality-badge { padding: 5px 10px; border-radius: 4px; font-weight: bold; font-size: 0.8em; }
