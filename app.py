@@ -26,7 +26,7 @@ st.markdown("""
     }
     .logo-box img {
         max-width: 400px; /* ロゴの最大幅を大きく設定 */
-        width: 80%;       /* 画面幅に合わせて調整 */
+        width: 60%;       /* 画面幅に合わせて調整 */
     }
 
 
