@@ -63,7 +63,7 @@ VOICE_MODELS = {
 
 try:
     st.markdown('<div class="logo-container">', unsafe_allow_html=True)
-    st.image("logo.png", width=250)
+    st.image("logo.png", width=500)
     st.markdown('</div>', unsafe_allow_html=True)
 except:
     st.title("音声生成システム")
