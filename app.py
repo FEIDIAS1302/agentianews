@@ -24,13 +24,6 @@ st.markdown("""
     </style>
     """, unsafe_allow_html=True)
 
-# --- ロゴの表示 ---
-try:
-    st.markdown('<div class="logo-container">', unsafe_allow_html=True)
-    st.image("logo.png", width=600)
-    st.markdown('</div>', unsafe_allow_html=True)
-except:
-    st.write("Logo (logo.png) not found.")
 
 
 # --- 内部解析関数 ---
