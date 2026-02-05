@@ -68,12 +68,12 @@ with st.container():
     with col1:
         lang_option = st.selectbox("出力言語", ["日本語", "英語", "中国語", "スペイン語", "韓国語"])
     with col3:
-        voice_style = st.selectbox("音声モデル", ["男性", "女性","吉田アナ[Test]"])
+        voice_style = st.selectbox("音声モデル", ["男性", "女性","吉田アナ"])
 
     VOICE_MODELS = {
         "男性": "b8580c330cd74c2bbb7785815f1756d3",
         "女性": "735434a118054f65897638d4b7380dfc"
-        "吉田アナ[Test]": "ffe7a84cf0e243359b28e6c3686bc9a"
+        "吉田アナ": "ffe7a84cf0e243359b28e6c3686bc9a"
     }
 
     if st.button("音声を生成・検品"):
