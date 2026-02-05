@@ -67,7 +67,7 @@ with st.container():
     col1, col2 = st.columns(2)
     with col1:
         lang_option = st.selectbox("出力言語", ["日本語", "英語", "中国語", "スペイン語", "韓国語"])
-    with col2:
+    with col3:
         voice_style = st.selectbox("音声モデル", ["男性", "女性","吉田アナ[Test]"])
 
     VOICE_MODELS = {
