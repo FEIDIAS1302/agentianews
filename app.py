@@ -75,9 +75,7 @@ if os.path.exists("logo.png"):
             <img src="data:image/png;base64,{st.image("logo.png")}" />
         </div>
     ''', unsafe_allow_html=True)
-    # Streamlit標準のst.imageではなくHTMLで制御
-    st.empty() # スペース調整
-    st.columns([1, 5, 1])[1].image("logo.png", use_container_width=True)
+
 else:
     st.title("音声生成システム")
 
@@ -90,7 +88,7 @@ with st.container():
     with col1:
         lang_option = st.selectbox("出力言語", ["日本語", "英語", "中国語", "スペイン語", "韓国語"])
     with col2:
-        voice_style = st.selectbox("音声モデル", ["ビジネス・ナレーター (男性)", "ビジネス・アシスタント (女性)"])
+        voice_style = st.selectbox("音声モデル", ["男性", "女性"])
 
     VOICE_MODELS = {
         "男性": "ffe7a84cf0e243359b28e6c3686bc9af",
