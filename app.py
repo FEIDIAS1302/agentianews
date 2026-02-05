@@ -3,8 +3,8 @@ import requests
 from deep_translator import GoogleTranslator
 import whisper
 import numpy as np
-import librosa
 import os
+import difflib
 
 # --- ページ設定 & デザイン修正 ---
 st.set_page_config(page_title="AGENTIA for ニッポン放送β", layout="centered")
@@ -16,19 +16,6 @@ st.markdown("""
     #root > div:nth-child(1) > div > div > div > div > section > div {padding-top: 0rem;}
     .main .block-container { padding-top: 0rem; max-width: 700px; }
     
-    /* ロゴのセンター配置とサイズ調整 */
-    .logo-box {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 100%;
-        padding: 20px 0;
-    }
-    .logo-box img {
-        max-width: 400px; /* ロゴの最大幅を大きく設定 */
-        width: 60%;       /* 画面幅に合わせて調整 */
-    }
-
 
     
     /* 検品バッジ */
@@ -49,31 +36,25 @@ def analyze_audio(audio_bytes, target_text):
         f.write(audio_bytes)
     
     try:
-        # 1. テキスト照合
+        # テキスト照合 (Whisper)
         model = load_whisper()
         result = model.transcribe(temp_file)
         transcribed_text = result["text"].strip()
         
-        import difflib
+        # 一致率計算
         match_score = difflib.SequenceMatcher(None, target_text.lower(), transcribed_text.lower()).ratio()
         
-        # 2. 音質解析
-        y, sr = librosa.load(temp_file)
-        rms = np.sqrt(np.mean(y**2))
-        
-        return {"transcribed": transcribed_text, "accuracy": match_score * 100, "rms": rms}
+        return {"transcribed": transcribed_text, "accuracy": match_score * 100}
     finally:
         if os.path.exists(temp_file):
             os.remove(temp_file)
 
 # --- メインレイアウト ---
 
-
-# ロゴ部分
+# ロゴ部分：HTMLではなくStreamlit標準機能でセンター配置
 if os.path.exists("logo.png"):
-    # カラムを使って中央に配置する（左右に空白を作る）
-    col_left, col_mid, col_right = st.columns([1, 3, 1])
-    with col_mid:
+    col_l, col_m, col_r = st.columns([1, 4, 1]) # 中央のカラムを広く
+    with col_m:
         st.image("logo.png", use_container_width=True)
 else:
     st.title("音声生成システム")
@@ -119,18 +100,14 @@ with st.container():
                         st.audio(audio_data)
                         
                         st.markdown("### AI検品レポート")
-                        c1, c2 = st.columns(2)
-                        with c1:
-                            acc = analysis['accuracy']
-                            color = "pass" if acc > 80 else "fail"
-                            st.markdown(f"読み上げ精度: <span class='quality-badge {color}'>{acc:.1f}%</span>", unsafe_allow_html=True)
-                            st.caption(f"認識: {analysis['transcribed']}")
-                        with c2:
-                            is_ok = analysis['rms'] > 0.01
-                            color = "pass" if is_ok else "fail"
-                            st.markdown(f"音圧レベル: <span class='quality-badge {color}'>{'OK' if is_ok else 'LOW'}</span>", unsafe_allow_html=True)
+                        
+                        acc = analysis['accuracy']
+                        color = "pass" if acc > 80 else "fail"
+                        st.markdown(f"読み上げ精度: <span class='quality-badge {color}'>{acc:.1f}%</span>", unsafe_allow_html=True)
+                        st.caption(f"認識内容: {analysis['transcribed']}")
 
-                        st.download_button("WAVをダウンロード", audio_data, "output.wav", "audio/wav")
+                        st.markdown("---")
+                        st.download_button("WAVをダウンロード", audio_data, "output.wav", "audio/wav", use_container_width=True)
                     else:
                         st.error("Fish Audio APIでエラーが発生しました。")
                 except Exception as e:
