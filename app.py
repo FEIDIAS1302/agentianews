@@ -68,14 +68,13 @@ def analyze_audio(audio_bytes, target_text):
 
 # --- メインレイアウト ---
 
+
 # ロゴ部分
 if os.path.exists("logo.png"):
-    st.markdown(f'''
-        <div class="logo-box">
-            <img src="data:image/png;base64,{st.image("logo.png")}" />
-        </div>
-    ''', unsafe_allow_html=True)
-
+    # カラムを使って中央に配置する（左右に空白を作る）
+    col_left, col_mid, col_right = st.columns([1, 3, 1])
+    with col_mid:
+        st.image("logo.png", use_container_width=True)
 else:
     st.title("音声生成システム")
 
