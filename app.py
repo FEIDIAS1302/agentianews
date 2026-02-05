@@ -16,14 +16,7 @@ st.markdown("""
     #root > div:nth-child(1) > div > div > div > div > section > div {padding-top: 0rem;}
     .main .block-container { padding-top: 0rem; max-width: 700px; }
     
-    /* カードデザイン */
-    .main-card { 
-        background-color: #ffffff; 
-        padding: 2.5rem; 
-        border-radius: 12px; 
-        border: 1px solid #e1e4e8;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.02);
-    }
+
     
     /* 検品バッジ */
     .quality-badge { padding: 4px 12px; border-radius: 4px; font-weight: bold; }
